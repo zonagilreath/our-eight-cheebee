@@ -1,0 +1,36 @@
+# Fly.io config for 8-C-B backend.
+# Deploy: `fly launch --no-deploy` then `fly deploy` from backend/ dir.
+# Required secrets: GOOGLE_APPLICATION_CREDENTIALS_JSON (firebase admin key content),
+#                   and Firebase project id via env below.
+
+app = "ecb-list-backend"
+primary_region = "dfw"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  ECB_HEADLESS = "true"
+  GOOGLE_APPLICATION_CREDENTIALS = "/app/firebase-admin-key.json"
+
+[[mounts]]
+  source = "ecb_auth"
+  destination = "/root/.texas-grocery-mcp"
+
+[http_service]
+  internal_port = 8000
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+
+  [[http_service.checks]]
+    grace_period = "10s"
+    interval = "30s"
+    method = "GET"
+    timeout = "5s"
+    path = "/health"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "1gb"

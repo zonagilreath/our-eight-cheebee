@@ -1,0 +1,10 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /list_items/{itemId} {
+      // Both users share an account — allow all reads/writes
+      allow read, write: if true;
+    }
+  }
+}

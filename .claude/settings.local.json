@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:www.heb.com)",
+      "Bash(npm install:*)",
+      "Bash(rm -rf src/assets)",
+      "Bash(mkdir -p public/icons)",
+      "Bash(mkdir -p ../backend/app/routers ../backend/app/models ../backend/app/heb ../supabase/migrations)",
+      "Bash(npx tsc:*)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(npm uninstall:*)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(pip install:*)",
+      "Bash(python -c \"from texas_grocery_mcp.clients.graphql import HEBGraphQLClient; print\\('OK'\\)\")",
+      "Bash(python -c ':*)",
+      "Bash(curl -s \"http://localhost:8000/search?q=milk&limit=3\")",
+      "Bash(python -m json.tool)",
+      "Bash(git -C \"C:/Users/zona/Documents/GitHub/our-eight-cheebee\" status --short)",
+      "PowerShell(Get-Command flyctl -ErrorAction SilentlyContinue; Get-Command fly -ErrorAction SilentlyContinue; Write-Output \"---paths---\"; Test-Path \"$env:USERPROFILE\\\\.fly\\\\bin\\\\flyctl.exe\"; Test-Path \"$env:USERPROFILE\\\\.fly\\\\bin\\\\fly.exe\"; Write-Output \"---user PATH---\"; [Environment]::GetEnvironmentVariable\\('Path','User'\\))",
+      "Bash(fly version *)"
+    ]
+  }
+}
