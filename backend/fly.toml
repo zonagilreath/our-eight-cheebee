@@ -1,36 +1,23 @@
-# Fly.io config for 8-C-B backend.
-# Deploy: `fly launch --no-deploy` then `fly deploy` from backend/ dir.
-# Required secrets: GOOGLE_APPLICATION_CREDENTIALS_JSON (firebase admin key content),
-#                   and Firebase project id via env below.
+# fly.toml app configuration file generated for our-eight-cheebee on 2026-04-21T23:19:19Z
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
 
-app = "ecb-list-backend"
-primary_region = "dfw"
+app = 'our-eight-cheebee'
+primary_region = 'dfw'
 
 [build]
-  dockerfile = "Dockerfile"
-
-[env]
-  ECB_HEADLESS = "true"
-  GOOGLE_APPLICATION_CREDENTIALS = "/app/firebase-admin-key.json"
-
-[[mounts]]
-  source = "ecb_auth"
-  destination = "/root/.texas-grocery-mcp"
 
 [http_service]
-  internal_port = 8000
+  internal_port = 8080
   force_https = true
-  auto_stop_machines = "stop"
+  auto_stop_machines = 'stop'
   auto_start_machines = true
   min_machines_running = 0
-
-  [[http_service.checks]]
-    grace_period = "10s"
-    interval = "30s"
-    method = "GET"
-    timeout = "5s"
-    path = "/health"
+  processes = ['app']
 
 [[vm]]
-  size = "shared-cpu-1x"
-  memory = "1gb"
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
+  memory_mb = 1024
